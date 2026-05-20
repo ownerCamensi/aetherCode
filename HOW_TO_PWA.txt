@@ -1,0 +1,96 @@
+===========================================================
+  CodeX Editor v6 — PWA Setup Guide
+===========================================================
+
+STEP 1 — Host the app (required for PWA)
+  Service workers ONLY work on https:// or localhost.
+  They do NOT work on file:// (opening index.html directly).
+
+  EASIEST OPTIONS (all free):
+
+  A) Netlify (recommended, 30 seconds):
+     1. Go to https://netlify.com
+     2. Drag your codex-editor folder onto the deploy area
+     3. Done — you get a https://yourapp.netlify.app URL
+
+  B) GitHub Pages:
+     1. Push folder to a GitHub repo
+     2. Settings → Pages → Deploy from branch → main
+     3. Done — https://yourname.github.io/codex-editor
+
+  C) Local testing (localhost only):
+     python3 -m http.server 8080
+     Then open: http://localhost:8080
+
+STEP 2 — Install on Android (Chrome)
+  1. Open your hosted URL in Chrome
+  2. Wait a few seconds
+  3. Chrome shows "Add CodeX to Home Screen" banner
+     OR tap ⋮ menu → "Install App" / "Add to Home Screen"
+  4. Tap Install — done!
+  5. CodeX now appears on your home screen like a real app
+  6. Works 100% offline after first load
+
+STEP 3 — Install on iPhone (Safari)
+  1. Open your hosted URL in Safari
+  2. Tap the Share button (box with arrow)
+  3. Scroll down → tap "Add to Home Screen"
+  4. Tap Add
+  5. Done! Opens full screen, no Safari UI
+
+===========================================================
+  What works offline after install:
+===========================================================
+  ✅ Full editor (Ace)
+  ✅ All syntax highlighting + themes
+  ✅ File creation, editing, localStorage
+  ✅ Plugin system
+  ✅ Preview runner
+  ✅ All UI
+
+  ❌ Eruda CDN fallback (use local eruda.js instead)
+  ❌ Any external URLs your code tries to fetch
+
+===========================================================
+  Auto-updates:
+===========================================================
+  When you redeploy with changes:
+  1. Bump CACHE_VERSION in service-worker.js (e.g. codex-v7)
+  2. Redeploy
+  3. Users see "↻ Update" button in status bar
+  4. They click it → app reloads with new version
+
+===========================================================
+  File structure (v6):
+===========================================================
+  codex-editor/
+    ├── index.html
+    ├── manifest.json       ← PWA manifest
+    ├── service-worker.js   ← Offline caching
+    ├── pwa.js              ← SW registration + install prompt
+    ├── style.css
+    ├── state.js
+    ├── events.js
+    ├── icons.js
+    ├── editor.js
+    ├── panel-system.js
+    ├── plugin-api.js
+    ├── plugin-manager.js
+    ├── runner.js
+    ├── ui.js
+    ├── eruda.js            ← optional, download separately
+    ├── icons/              ← app icons for home screen
+    │   ├── icon-72.png
+    │   ├── icon-96.png
+    │   ├── icon-128.png
+    │   ├── icon-144.png
+    │   ├── icon-152.png
+    │   ├── icon-192.png
+    │   ├── icon-384.png
+    │   └── icon-512.png
+    └── ace/                ← ALL flat, no subfolders
+        ├── ace.js
+        ├── ext-language_tools.js
+        ├── theme-monokai.js
+        ├── mode-javascript.js
+        └── ...

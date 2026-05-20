@@ -1,0 +1,149 @@
+===========================================================
+  CodeX Editor v4 — Full Setup Guide
+===========================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ACE FOLDER STRUCTURE (IMPORTANT!)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ALL ace files go FLAT inside the /ace folder.
+  NO subfolders. NOT ace/mode/ or ace/themes/.
+
+  CORRECT ✅
+  codex-editor/
+    └── ace/
+        ├── ace.js
+        ├── theme-monokai.js
+        ├── mode-javascript.js
+        └── ...
+
+  WRONG ❌
+  codex-editor/
+    └── ace/
+        ├── mode/
+        │   └── javascript.js
+        └── themes/
+            └── dracula.js
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  EXACT FILES TO DOWNLOAD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Base URL: https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.9/
+
+Download each one and save with EXACT filename shown:
+
+  REQUIRED (core):
+  ├── ace.js
+  ├── ext-language_tools.js
+
+  THEMES (save as shown):
+  ├── theme-monokai.js
+  ├── theme-dracula.js
+  ├── theme-solarized_dark.js
+  ├── theme-nord_dark.js
+  ├── theme-github.js
+  ├── theme-chrome.js
+  ├── theme-twilight.js
+  ├── theme-tomorrow_night.js
+  ├── theme-cobalt.js
+  └── theme-ambiance.js
+
+  LANGUAGE MODES (save as shown):
+  ├── mode-javascript.js
+  ├── mode-typescript.js
+  ├── mode-html.js
+  ├── mode-css.js
+  ├── mode-scss.js
+  ├── mode-json.js
+  ├── mode-markdown.js
+  ├── mode-python.js
+  ├── mode-java.js
+  ├── mode-c_cpp.js
+  ├── mode-rust.js
+  ├── mode-golang.js
+  ├── mode-sh.js
+  ├── mode-xml.js
+  ├── mode-sql.js
+  ├── mode-php.js
+  ├── mode-ruby.js
+  └── mode-text.js
+
+  WORKERS (optional, enables error squiggles):
+  ├── worker-javascript.js
+  ├── worker-json.js
+  ├── worker-css.js
+  └── worker-html.js
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DOWNLOAD SHORTCUT (easiest method)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Go to this GitHub release page and download the zip:
+  https://github.com/ajaxorg/ace-builds/releases/latest
+
+  Inside the zip, find the folder: src-noconflict/
+  Copy ALL files from src-noconflict/ into your ace/ folder.
+  That gives you every theme and mode at once.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ERUDA CONSOLE (optional)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Download: https://cdn.jsdelivr.net/npm/eruda/eruda.js
+  Save as: eruda.js (next to index.html, NOT inside /ace)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FINAL FOLDER STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  codex-editor/
+    ├── index.html
+    ├── style.css
+    ├── state.js
+    ├── events.js
+    ├── icons.js
+    ├── editor.js
+    ├── plugin-manager.js
+    ├── runner.js
+    ├── ui.js
+    ├── eruda.js              ← optional console
+    └── ace/                  ← ALL flat, no subfolders!
+        ├── ace.js
+        ├── ext-language_tools.js
+        ├── theme-monokai.js
+        ├── theme-dracula.js
+        ├── mode-javascript.js
+        ├── mode-html.js
+        ├── mode-css.js
+        └── ... (all others)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  HOW THE RUNNER WORKS (multi-file projects)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  The runner INLINES your CSS and JS automatically.
+  Example: if index.html has:
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+
+  The runner finds style.css and app.js in your open files
+  and inlines them before creating the preview. No server needed.
+
+  Just make sure all linked files are OPEN in the editor (in tabs).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PLUGIN SVG ICONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  In plugin JSON, paste raw SVG for file icons:
+  {
+    "title": "My Icons",
+    "type": "fileIcons",
+    "config": {
+      "icons": {
+        "js":   "<svg xmlns='...' viewBox='0 0 16 16'>...</svg>",
+        "html": "<svg xmlns='...' viewBox='0 0 16 16'>...</svg>"
+      }
+    }
+  }
